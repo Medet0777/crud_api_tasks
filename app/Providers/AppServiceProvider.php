@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Contracts\TaskRepositoryContract;
+use App\Repositories\Eloquent\TaskRepository;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -11,7 +13,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->bind(
+            TaskRepositoryContract::class,
+            TaskRepository::class
+        );
     }
 
     /**
