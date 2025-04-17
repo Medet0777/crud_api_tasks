@@ -15,14 +15,26 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
+        // Привязка контрактов к реализациям
         $this->app->bind(
             TaskRepositoryContract::class,
-            TaskRepository::class,
+            TaskRepository::class
         );
+
         $this->app->bind(
             TaskServiceContract::class,
             TaskService::class
         );
+
+        // Регистрация фасада repository
+        $this->app->singleton('repository', function ($app) {
+            return new class {
+                public function task()
+                {
+                    return app(TaskRepositoryContract::class);
+                }
+            };
+        });
     }
 
     /**

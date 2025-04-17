@@ -35,7 +35,7 @@ class TaskRepository implements TaskRepositoryContract
     }
 
     public function delete(int $id): bool{
-        $task = $this->find($id);
+        $task = Task::find($id);
         if ($task) {
             return $task->delete();
         }
