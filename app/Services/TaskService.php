@@ -41,7 +41,7 @@ class TaskService implements TaskServiceContract{
     {
         $answer =  Repository::task()->delete($id);
         return $answer
-            ? response()->json(new TaskResource($answer))
+            ? response()->json(['message' => 'Task deleted successfully'])
             : response()->json(['message' => 'Task not found'], 404);
     }
 }
