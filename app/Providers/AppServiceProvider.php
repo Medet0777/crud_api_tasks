@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Contracts\TaskRepositoryContract;
+use App\Contracts\TaskServiceContract;
 use App\Repositories\Eloquent\TaskRepository;
+use App\Services\TaskService;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -15,7 +17,11 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind(
             TaskRepositoryContract::class,
-            TaskRepository::class
+            TaskRepository::class,
+        );
+        $this->app->bind(
+            TaskServiceContract::class,
+            TaskService::class
         );
     }
 
